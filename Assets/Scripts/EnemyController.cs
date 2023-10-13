@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
     // Broken
     private bool broken = true;
     public ParticleSystem smokeEffect;
+    // Audio
+    public AudioClip[] hitSound;
+    public AudioClip fixedSound;
 
     void Start()
     {

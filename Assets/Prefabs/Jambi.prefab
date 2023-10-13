@@ -482,3 +482,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayTime: 4
   dialogBox: {fileID: 7932724116906224207}
+  questCompleteSound: {fileID: 8300000, guid: f987bfc0b774d3f4e82dc47e91f78584, type: 3}

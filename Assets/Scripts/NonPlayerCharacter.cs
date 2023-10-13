@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class NonPlayerCharacter : MonoBehaviour
 {
+    // Dialog Box
     public float displayTime = 4.0f;
     public GameObject dialogBox;
     private float timerDisplay = -1.0f;
+    // Audio
+    public AudioClip questCompleteSound;
 
     void Start()
     {

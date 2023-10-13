@@ -8,6 +8,7 @@ public class RubyController : MonoBehaviour
     // Component
     Rigidbody2D rigid;
     Animator anim;
+    AudioSource audioSource;
 
     // Projectile
     public GameObject projectilePrefab;
@@ -23,11 +24,16 @@ public class RubyController : MonoBehaviour
     public float timeInvincible = 2.0f;
     private bool isInvincible;
     private float invincibleTimer;
+    // Audio
+    public AudioClip hitSound;
+    public AudioClip throwCogSound;
+    public AudioClip footstepSound;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;
     }
@@ -66,6 +72,8 @@ public class RubyController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             Launch();
+
+            PlaySound(throwCogSound);
         }
 
         // Interact
@@ -97,6 +105,8 @@ public class RubyController : MonoBehaviour
             invincibleTimer = timeInvincible;
 
             anim.SetTrigger("Hit");
+
+            PlaySound(hitSound);
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
 
@@ -117,5 +127,10 @@ public class RubyController : MonoBehaviour
         projectile.Launch(lookDirection, projectileForce);
 
         anim.SetTrigger("Launch");
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }
