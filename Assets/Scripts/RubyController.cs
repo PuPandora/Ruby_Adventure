@@ -67,6 +67,23 @@ public class RubyController : MonoBehaviour
         {
             Launch();
         }
+
+        // Interact
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(
+                rigid.position + Vector2.up * 0.2f,
+                lookDirection,
+                1.5f,
+                LayerMask.GetMask("NPC")
+                );
+
+            NonPlayerCharacter npc = hit.collider.GetComponent<NonPlayerCharacter>();
+            if (npc != null)
+            {
+                npc.DisplayDialog();
+            }
+        }
     }
 
     public void ChangeHealth(int amount)
@@ -82,6 +99,8 @@ public class RubyController : MonoBehaviour
             anim.SetTrigger("Hit");
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+
+        // Health Bar UI Update
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 
