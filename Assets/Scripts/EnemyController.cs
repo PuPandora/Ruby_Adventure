@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     private int direction = 1;
     // Broken
     private bool broken = true;
+    public ParticleSystem smokeEffect;
 
     void Start()
     {
@@ -71,7 +72,10 @@ public class EnemyController : MonoBehaviour
     {
         broken = false;
         rigid.simulated = false;
+
         anim.SetTrigger("Fixed");
+
+        smokeEffect.Stop();
     }
 
 }
