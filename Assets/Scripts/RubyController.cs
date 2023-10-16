@@ -72,8 +72,6 @@ public class RubyController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             Launch();
-
-            PlaySound(throwCogSound);
         }
 
         // Interact, Dialogue
@@ -126,6 +124,8 @@ public class RubyController : MonoBehaviour
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, projectileForce);
 
+        PlaySound(throwCogSound);
+        
         anim.SetTrigger("Launch");
     }
 
