@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7904945699847931413}
   - component: {fileID: 4519967399584198341}
   - component: {fileID: 1332650387440045858}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7685916147690149016}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -177,6 +177,8 @@ MonoBehaviour:
   speed: 3
   vertical: 0
   changeTime: 3
+  randomChangeTime: {x: 3, y: 5}
+  startDirection: 0
   smokeEffect: {fileID: 2075606927763376869}
   hitSound:
   - {fileID: 8300000, guid: ae904c7305df7344d86b2092c0cb3a26, type: 3}

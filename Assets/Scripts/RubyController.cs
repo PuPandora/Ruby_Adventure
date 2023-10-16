@@ -15,7 +15,7 @@ public class RubyController : MonoBehaviour
     public float projectileForce = 300.0f;
     // Move
     public float speed = 3.0f;
-    Vector2 lookDirection = new Vector2(1, 0);
+    Vector2 lookDirection = new Vector2(0, 1);
     // HP
     public int maxHealth = 5;
     public int health { get { return currentHealth; } }
@@ -57,7 +57,7 @@ public class RubyController : MonoBehaviour
 
         // Move
         Vector2 position = rigid.position;
-        position += move * speed * Time.deltaTime;
+        position += move.normalized * speed * Time.deltaTime;
         rigid.MovePosition(position);
 
         // Invincible
@@ -68,7 +68,7 @@ public class RubyController : MonoBehaviour
                 isInvincible = false;
         }
 
-        // Attack
+        // Attack, Throw a cog
         if (Input.GetKeyDown(KeyCode.C))
         {
             Launch();
@@ -76,7 +76,7 @@ public class RubyController : MonoBehaviour
             PlaySound(throwCogSound);
         }
 
-        // Interact
+        // Interact, Dialogue
         if (Input.GetKeyDown(KeyCode.X))
         {
             RaycastHit2D hit = Physics2D.Raycast(

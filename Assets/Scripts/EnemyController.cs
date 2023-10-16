@@ -6,11 +6,18 @@ public class EnemyController : MonoBehaviour
 {
     Rigidbody2D rigid;
     Animator anim;
+    RubyController ruby;
     
+    private enum EStartDirection { None, Left, Right, Random }
+
     // Move
     public float speed = 3.0f;
     public bool vertical;
-    public float changeTime = 3.0f;
+    public float changeTime;
+    public Vector2 randomChangeTime;
+    [Tooltip("None : 초기 값. 변경하지 않는다면 왼쪽\nLeft : 왼쪽\nRight : 오른쪽\nRandom : 50% 확률 왼쪽/오른쪽")]
+    [SerializeField]
+    private EStartDirection startDirection;
     private float timer;
     private int direction = 1;
     // Broken
@@ -24,7 +31,12 @@ public class EnemyController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        // Set move time
+        changeTime = Random.Range(randomChangeTime.x, randomChangeTime.y);
         timer = changeTime;
+
+        SetStartDirection();
     }
 
     void Update()
@@ -61,13 +73,43 @@ public class EnemyController : MonoBehaviour
         rigid.MovePosition(position);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D other)
     {
-        RubyController ruby = collision.gameObject.GetComponent<RubyController>();
-
-        if (ruby != null)
+        if (other.gameObject.CompareTag("Player"))
         {
+            if (ruby == null)
+            {
+                ruby = other.gameObject.GetComponent<RubyController>();
+            }
+
             ruby.ChangeHealth(-1);
+        }  
+    }
+
+    private void SetStartDirection()
+    {
+        switch (startDirection)
+        {
+            case EStartDirection.None:
+                Debug.LogWarning("로봇의 시작 방향이 설정되지 않았습니다.", gameObject);
+                direction = 1;
+                break;
+
+            case EStartDirection.Left:
+                direction = -1;
+                break;
+
+            case EStartDirection.Right:
+                direction = 1;
+                break;
+
+            case EStartDirection.Random:
+                direction = 0;
+                while (direction == 0)
+                {
+                    direction = Random.Range(-1, 2);
+                }
+                break;
         }
     }
 
@@ -80,5 +122,4 @@ public class EnemyController : MonoBehaviour
 
         smokeEffect.Stop();
     }
-
 }

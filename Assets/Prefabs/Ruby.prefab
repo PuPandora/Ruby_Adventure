@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7658475635608655351}
   m_Layer: 8
   m_Name: Ruby
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!95 &-3666288152964226768
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6267199094396101691, guid: 8fffaa2b687488f4ebe1b091a52cb815, type: 3}
   projectileForce: 300
-  speed: 3
+  speed: 6
   maxHealth: 10
   timeInvincible: 2
   hitSound: {fileID: 8300000, guid: 9b1bb1f450b7d444fa4a8019d13519a7, type: 3}
